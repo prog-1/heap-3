@@ -9,8 +9,7 @@ func L(i int) int {
 func R(i int) int {
 	return 2*i + 2
 }
-
-func heapifyUp(i int, s []int) {
+func HeapifyUp(i int, s []int) {
 	largest := i
 	if L(i) < len(s) && s[L(i)] > s[largest] {
 		largest = L(i)
@@ -20,12 +19,11 @@ func heapifyUp(i int, s []int) {
 	}
 	if largest != i {
 		s[i], s[largest] = s[largest], s[i]
-		heapifyUp(largest, s)
+		HeapifyUp(largest, s)
 	}
 }
-
-func heapify(s []int) {
+func Heapify(s []int) {
 	for i := len(s)/2 - 1; i >= 0; i-- {
-		heapifyUp(i, s)
+		HeapifyUp(i, s)
 	}
 }

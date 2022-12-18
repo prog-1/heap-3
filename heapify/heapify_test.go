@@ -1,6 +1,7 @@
 package heapify
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -16,21 +17,22 @@ func isHeap(s []int, i int) bool {
 
 func TestHeapify(t *testing.T) {
 	for _, tc := range []struct {
-		s []int
+		s    []int
+		want []int
 	}{
 		// we dont really care about exact values here
 		// only if result is max heap to sort array correctly
-		{nil},
-		{[]int{}},
-		{[]int{0, 0}},
-		{[]int{9}},
-		{[]int{4, 5, 3}},
-		{[]int{6, 1, 5, 9, 4, 2, 3, 7, 8}},
-		{[]int{6, 0, 1, 5, 9, 4, 2, 3, 7, 8}},
+		{nil, nil},
+		{[]int{}, []int{}},
+		{[]int{0, 0}, []int{0, 0}},
+		{[]int{9}, []int{9}},
+		{[]int{4, 5, 3}, []int{3, 4, 5}},
+		{[]int{6, 1, 5, 9, 4, 2, 3, 7, 8}, []int{8}},
+		{[]int{6, 0, 1, 5, 9, 4, 2, 3, 7, 8}, []int{9}},
 	} {
 		t.Run("", func(t *testing.T) {
-			if heapify(tc.s); !isHeap(tc.s, 0) {
-				t.Errorf("s = %v, but != max heap", tc.s)
+			if Heapify(tc.s); !reflect.DeepEqual(tc.s, tc.want) {
+				t.Errorf("s = %v, want = %v, but != max heap", tc.s, tc.want)
 			}
 		})
 	}
