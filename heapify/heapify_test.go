@@ -30,7 +30,7 @@ func TestHeapify(t *testing.T) {
 		{[]int{6, 0, 1, 5, 9, 4, 2, 3, 7, 8}},
 	} {
 		t.Run("", func(t *testing.T) {
-			if Heapify(tc.s);!isHeap(tc.s){
+			if Heapify(tc.s);!isHeap(tc.s, 0){
 				t.Errorf("s = %v, but != max heap", tc.s)
 			}
 		})
