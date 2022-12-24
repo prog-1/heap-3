@@ -1,12 +1,10 @@
 package main
 
-import "fmt"
-
-func main() {
-	s := []int{7, 9, 2, 15, 10, 5, 12}
-	heapify(s)
-	fmt.Println(s)
-}
+// func main() {
+// 	s := []int{7, 9, 2, 15, 10, 5, 12}
+// 	heapify(s)
+// 	fmt.Println(s)
+// }
 
 //turns slice into max heap in-place
 func heapify(s []int) {
@@ -30,12 +28,12 @@ func heapify(s []int) {
 
 //balances maxHeap from root to leaves (p > c)
 func heapifyUp(s []int, i int) {
-	for iv(s, l(i)) && s[i] < s[l(i)] || iv(s, r(i)) && s[i] < s[r(i)] { // while p < l or r
+	for ; iv(s, l(i)) && s[i] < s[l(i)] || iv(s, r(i)) && s[i] < s[r(i)]; i++ { // while p < l or r
 		max := i
-		if iv(s, l(i)) && s[i] < s[l(i)] { // if l > p
+		if iv(s, l(i)) && s[l(i)] > s[i] { // if l > p
 			max = l(i)
 		}
-		if iv(s, r(i)) && s[i] < s[r(i)] { // if r > p
+		if iv(s, r(i)) && s[r(i)] > s[max] { // if r > p or l
 			max = r(i)
 		}
 		if max != i { // if l or r > p
